@@ -1,0 +1,2 @@
+# BanderitaX
+BanderitaX game
