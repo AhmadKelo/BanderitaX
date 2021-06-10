@@ -1189,6 +1189,7 @@ GameObject:
   - component: {fileID: 642430410}
   - component: {fileID: 642430409}
   - component: {fileID: 642430411}
+  - component: {fileID: 642430412}
   m_Layer: 0
   m_Name: fried-potatoes
   m_TagString: Potato
@@ -1286,6 +1287,25 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.85333335, y: 0.85333335}
   m_EdgeRadius: 0
+--- !u!95 &642430412
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 642430408}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d7c719bc550d458458e7743d247ef127, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &756249871
 GameObject:
   m_ObjectHideFlags: 0
