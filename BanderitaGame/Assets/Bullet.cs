@@ -9,6 +9,8 @@ public class Bullet : MonoBehaviour
 
     public Animator anim;
 
+    //public GameObject effect;
+
     void Start()
     {
         rb.velocity = transform.right * speed;
@@ -35,6 +37,9 @@ public class Bullet : MonoBehaviour
         {
             player.PlayerDieByHit();
             anim.Play("BulletExpAnim");
+
+            //Instantiate(effect, transform.position, Quaternion.identity);
+
         }
         StartCoroutine(WaitForDestory());
     }
