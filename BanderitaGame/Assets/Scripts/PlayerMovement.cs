@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.IO.Ports;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -32,8 +33,14 @@ public class PlayerMovement : MonoBehaviour
     // Potato
     public GameObject[] potato;
 
+    //SerialPort data_stream = new SerialPort("COM3", 9600);
+
+
     void Start()
     {
+
+        //data_stream.Open();
+
         isJumping = false;
         mySprite = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
@@ -44,6 +51,16 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+
+        //if(data_stream.ReadByte()==1)
+        //{
+        //    mySprite.flipX = true;
+
+        //}
+        //if (data_stream.ReadByte() == 2)
+        //{
+        //    mySprite.flipX = false;
+        //}
 
         //Player direction
         if (Input.GetKey(KeyCode.A) && !PauseMenuScript.GameIsPaused)
@@ -72,12 +89,14 @@ public class PlayerMovement : MonoBehaviour
             anim.SetBool("isCrouching", true);
             speed = 4f;
             //bc.enabled = false;
+
         }
         else
         {
             anim.SetBool("isCrouching", false);
             speed = 7f;
             //bc.enabled = true;
+
         }
 
 
@@ -92,9 +111,14 @@ public class PlayerMovement : MonoBehaviour
         {
                 isJumping = false;
                 anim.SetBool("IsJumping", false);
-        }          
-    
-        
+        }
+
+
+        //if (data_stream.IsOpen)
+        //{         
+        //        MovingArd(data_stream.ReadByte());
+        //}
+
     }
 
 
@@ -149,5 +173,23 @@ public class PlayerMovement : MonoBehaviour
             
         }
     }
+
+    //public void MovingArd(int direction)
+    //{
+    //    if (direction == 1)
+    //    {
+    //        myPosition.x = -1f;
+    //    }
+
+    //    else if (direction == 2)
+    //    {
+    //        myPosition.x = 1f;
+    //    }
+    //    else if (direction == 3)
+    //    {
+    //        myPosition.x = 0f;
+    //    }
+
+    //}
 
 }
