@@ -22,6 +22,7 @@ public class PauseMenuScript : MonoBehaviour
                 Pause();
             }
         }
+
     }
 
     public void Resume()

@@ -26,21 +26,26 @@ public class Bullet : MonoBehaviour
 
     void FixedUpdate()
     {
-        transform.Rotate(0f, 0f, 6f);
-
+        transform.Rotate(0f, 0f, 10f);
     }
 
     void OnTriggerEnter2D(Collider2D hitInfo)
     {
+        rb.velocity = transform.right * 0;
+
+        anim.Play("BulletExpAnim");
+        
+
         PlayerMovement player = hitInfo.GetComponent<PlayerMovement>();
+
         if (player != null)
         {
-            player.PlayerDieByHit();
-            anim.Play("BulletExpAnim");
+            //Stop the Bullet
 
-            //Instantiate(effect, transform.position, Quaternion.identity);
+            player.PlayerDieByHit();
 
         }
+
         StartCoroutine(WaitForDestory());
     }
 

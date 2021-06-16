@@ -588,6 +588,7 @@ MonoBehaviour:
   verticalPosition: {x: 0, y: 0, z: 0}
   hitSound: {fileID: 1124240894}
   potato: []
+  facingRight: 0
 --- !u!50 &611748876
 Rigidbody2D:
   serializedVersion: 4
@@ -840,6 +841,7 @@ MonoBehaviour:
     type: 3}
   canvas: {fileID: 139214811}
   bullet: {fileID: 5951605209642899395, guid: 81ac1ca9e8cd03049bf794f716c445a3, type: 3}
+  speed: 2.5
 --- !u!61 &760894026
 BoxCollider2D:
   m_ObjectHideFlags: 0

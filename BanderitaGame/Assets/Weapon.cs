@@ -11,6 +11,8 @@ public class Weapon : MonoBehaviour
 
     public Bullet bullet;
 
+    public float speed;
+
     void Start()
     {
         StartCoroutine(WaitForShooting());
@@ -29,10 +31,13 @@ public class Weapon : MonoBehaviour
 
     IEnumerator WaitForShooting()
     {
-        yield return new WaitForSeconds(2.5f);
+        yield return new WaitForSeconds(speed);
         Shoot();
+        if(canvas != null)
+        {
         canvas.SetActive(false);
         canvas.SetActive(true);
+        }
         //bullet.speed += 0.025f;
         StartCoroutine(WaitForShooting());
     }

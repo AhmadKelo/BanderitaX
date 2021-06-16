@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System.IO.Ports;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -35,6 +34,7 @@ public class PlayerMovement : MonoBehaviour
 
     //SerialPort data_stream = new SerialPort("COM3", 9600);
 
+    public bool facingRight;
 
     void Start()
     {
@@ -63,14 +63,14 @@ public class PlayerMovement : MonoBehaviour
         //}
 
         //Player direction
-        if (Input.GetKey(KeyCode.A) && !PauseMenuScript.GameIsPaused)
+        if (myPosition.x > 0 && !PauseMenuScript.GameIsPaused)
         {
-            mySprite.flipX = true;
+                transform.eulerAngles = new Vector3(0f,0f,0f);
         }
 
-        if (Input.GetKey(KeyCode.D) && !PauseMenuScript.GameIsPaused)
+        if (myPosition.x < 0 && !PauseMenuScript.GameIsPaused)
         {
-            mySprite.flipX = false;
+                transform.eulerAngles = new Vector3(0f,180f,0f);
         }
 
 
@@ -156,7 +156,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
 
-
+/*
     private void OnTriggerEnter2D(Collider2D other)
     {
         if(other.gameObject.CompareTag("Potato"))
@@ -165,13 +165,10 @@ public class PlayerMovement : MonoBehaviour
             potato[0].SetActive(false);
         }
     }
-
+*/
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("Stair"))
-        {
-            
-        }
+
     }
 
     //public void MovingArd(int direction)

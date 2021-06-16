@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Potato
   - Stair
+  - Enemy
+  - Controller
   layers:
   - Default
   - TransparentFX
