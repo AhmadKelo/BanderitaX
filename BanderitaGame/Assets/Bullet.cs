@@ -31,6 +31,8 @@ public class Bullet : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D hitInfo)
     {
+        if(!hitInfo.CompareTag("Controller"))
+        {
         rb.velocity = transform.right * 0;
 
         anim.Play("BulletExpAnim");
@@ -45,7 +47,7 @@ public class Bullet : MonoBehaviour
             player.PlayerDieByHit();
 
         }
-
+        }
         StartCoroutine(WaitForDestory());
     }
 

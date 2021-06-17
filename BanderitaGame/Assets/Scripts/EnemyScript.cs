@@ -1,11 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class EnemyScript : MonoBehaviour
 {
 
-    public int health = 100;
+    public float maxHealth;
+    public float currentHealth;
 
     public Animator anim;
 
@@ -19,10 +21,18 @@ public class EnemyScript : MonoBehaviour
     BoxCollider2D bc2d; // For Disabling Collider when Loose
     bool lost;
 
+    SpriteRenderer sp;
+
+    public HealthBarScript healthBar;
+
+    public GameObject door;
+    public GameObject braaHealthBar;
+
     void Start()
     {
         anim = GetComponent<Animator>();
         bc2d = GetComponent<BoxCollider2D>();
+        sp = GetComponent<SpriteRenderer>();
 
         target = GameObject.Find("Player").GetComponent<Transform>();
 
@@ -37,23 +47,33 @@ public class EnemyScript : MonoBehaviour
             transform.position = Vector2.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
         }
 
+        if(transform.position.x > target.position.x)
+        {
+            transform.eulerAngles = new Vector3 (0f,0f,0f);
+            sp.flipX = false;
+        }else if(transform.position.x < target.position.x)
+        {
+            transform.eulerAngles = new Vector3 (0f,180f,0f);
+            sp.flipX = true;
+        }
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(float damage)
     {
         if(!lost)
         {
-        health -= damage;
+        currentHealth -= damage;
         
         anim.Play("TakeDamageAnim");
 
         braaHitSound.Stop();
         braaHitSound.Play();
+        healthBar.SetHealth(currentHealth);
 
-        if(health <= 0)
+        if(currentHealth <= 0)
         {
             DisAppear();
-            
+            EnemyLoose();
         }
         }
     }
@@ -64,5 +84,12 @@ public class EnemyScript : MonoBehaviour
         //anim.Play("BraaLooseAnim");
         lost = true;
         bc2d.enabled = false;
+    }
+
+
+    void EnemyLoose()
+    {
+        door.SetActive(true);
+        braaHealthBar.SetActive(false); 
     }
 }

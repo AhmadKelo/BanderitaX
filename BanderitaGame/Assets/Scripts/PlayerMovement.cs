@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -32,10 +33,10 @@ public class PlayerMovement : MonoBehaviour
     // Potato
     public GameObject[] potato;
 
-    //SerialPort data_stream = new SerialPort("COM3", 9600);
+    public int maxHealth;
+    public int currentHealth;
 
-    public bool facingRight;
-
+    public HealthBarScript healthBar;
     void Start()
     {
 
@@ -47,20 +48,12 @@ public class PlayerMovement : MonoBehaviour
         anim = GetComponent<Animator>();
         spawnPosition = transform.position;
         bc = GetComponent<BoxCollider2D>();
+
+        healthBar.SetMaxHealth(maxHealth);
     }
 
     void Update()
     {
-
-        //if(data_stream.ReadByte()==1)
-        //{
-        //    mySprite.flipX = true;
-
-        //}
-        //if (data_stream.ReadByte() == 2)
-        //{
-        //    mySprite.flipX = false;
-        //}
 
         //Player direction
         if (myPosition.x > 0 && !PauseMenuScript.GameIsPaused)
@@ -114,11 +107,6 @@ public class PlayerMovement : MonoBehaviour
         }
 
 
-        //if (data_stream.IsOpen)
-        //{         
-        //        MovingArd(data_stream.ReadByte());
-        //}
-
     }
 
 
@@ -137,6 +125,7 @@ public class PlayerMovement : MonoBehaviour
         //anim.Play("DieAnim");
         hitSound.Play();
         StartCoroutine(WaitForDie());
+        TakeDamage(20);
     }
 
     //When Player Lose By Falling Down
@@ -146,6 +135,7 @@ public class PlayerMovement : MonoBehaviour
         anim.Play("IdleAnim");
         myPosition.x = 0f;
         transform.position = spawnPosition;
+        TakeDamage(20);
     }
 
     //Wait to Respawn
@@ -171,22 +161,19 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
-    //public void MovingArd(int direction)
-    //{
-    //    if (direction == 1)
-    //    {
-    //        myPosition.x = -1f;
-    //    }
+    void TakeDamage(int damage)
+    {
+        currentHealth -= damage;
+        healthBar.SetHealth(currentHealth);
 
-    //    else if (direction == 2)
-    //    {
-    //        myPosition.x = 1f;
-    //    }
-    //    else if (direction == 3)
-    //    {
-    //        myPosition.x = 0f;
-    //    }
+        if(currentHealth <= 0)
+        {
+            GameOver();
+        }
+    }
 
-    //}
-
+    void GameOver()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
 }

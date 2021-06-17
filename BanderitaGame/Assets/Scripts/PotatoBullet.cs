@@ -10,7 +10,7 @@ public class PotatoBullet : MonoBehaviour
 
     Animator anim;
 
-    public int damage;
+    public float damage;
     void Start()
     {
         rb.velocity = transform.right * speed;
