@@ -17,9 +17,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float jump = 12.5f;
 
     [SerializeField] Vector3 myPosition;
-    [SerializeField] Vector3 verticalPosition;
 
-    bool isJumping;
+    public bool isJumping;
 
     // Spawning
     Vector3 spawnPosition;
@@ -27,8 +26,10 @@ public class PlayerMovement : MonoBehaviour
     // Audio
     public AudioSource hitSound;
 
-    // Collider
-    BoxCollider2D bc;
+    // Crouch
+    public BoxCollider2D bc1;
+    public BoxCollider2D bc2;
+    public bool isCrouching;
 
     // Potato
     public GameObject[] potato;
@@ -39,16 +40,13 @@ public class PlayerMovement : MonoBehaviour
     public HealthBarScript healthBar;
     void Start()
     {
-
-        //data_stream.Open();
-
         isJumping = false;
         mySprite = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         spawnPosition = transform.position;
-        bc = GetComponent<BoxCollider2D>();
 
+        if(healthBar != null)
         healthBar.SetMaxHealth(maxHealth);
     }
 
@@ -81,15 +79,17 @@ public class PlayerMovement : MonoBehaviour
         {
             anim.SetBool("isCrouching", true);
             speed = 4f;
-            //bc.enabled = false;
-
+            bc1.enabled = false;
+            bc2.enabled = true;
+            isCrouching = true;
         }
-        else
+        else 
         {
             anim.SetBool("isCrouching", false);
             speed = 7f;
-            //bc.enabled = true;
-
+            bc1.enabled = true;
+            bc2.enabled = false;
+            isCrouching = false;
         }
 
 
@@ -122,31 +122,51 @@ public class PlayerMovement : MonoBehaviour
     // When Player Lose By Controller Hit
     public void PlayerDieByHit()
     {
-        //anim.Play("DieAnim");
         hitSound.Play();
-        StartCoroutine(WaitForDie());
-        TakeDamage(20);
+        TakeDamage(15);
     }
 
     //When Player Lose By Falling Down
     public void PlayerDieFalling()
     {
-        //anim.Play("DieAnim");
         anim.Play("IdleAnim");
         myPosition.x = 0f;
         transform.position = spawnPosition;
-        TakeDamage(20);
+        TakeDamage(15);
     }
 
-    //Wait to Respawn
-    IEnumerator WaitForDie()
+
+    void TakeDamage(int damage)
     {
-        yield return new WaitForSeconds(0.2f);
+        if(healthBar != null)
+        {
+            currentHealth -= damage;
+            healthBar.SetHealth(currentHealth);
+            anim.Play("PlayerTakeDamageAnim");
+
+            if(currentHealth <= 0)
+            {
+                GameOver();
+            }
+        }else if(healthBar == null)
+        {
+            StartCoroutine(Respawn());
+        }
+    }
+
+    void GameOver()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    IEnumerator Respawn()
+    {
+        yield return new WaitForSeconds(0.25f);
         transform.position = spawnPosition;
     }
 
 
-/*
+    /*
     private void OnTriggerEnter2D(Collider2D other)
     {
         if(other.gameObject.CompareTag("Potato"))
@@ -156,24 +176,4 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 */
-    private void OnTriggerExit2D(Collider2D other)
-    {
-
-    }
-
-    void TakeDamage(int damage)
-    {
-        currentHealth -= damage;
-        healthBar.SetHealth(currentHealth);
-
-        if(currentHealth <= 0)
-        {
-            GameOver();
-        }
-    }
-
-    void GameOver()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-    }
 }

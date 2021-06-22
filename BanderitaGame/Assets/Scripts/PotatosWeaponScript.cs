@@ -8,18 +8,20 @@ public class PotatosWeaponScript : MonoBehaviour
     public Transform firePoint;
     public GameObject bulletPrefab;
 
-    bool canShoot = true;
+    public bool canShoot = true;
 
     public float shootingDelay;
+
+    PlayerMovement playerMovement;
     void Start()
     {
-        
+        playerMovement = GetComponent<PlayerMovement>();
     }
 
 
     void Update()
     {
-        if(Input.GetButtonDown("Fire1") && !PauseMenuScript.GameIsPaused && canShoot)
+        if(Input.GetButtonDown("Fire1") && !PauseMenuScript.GameIsPaused && canShoot && !playerMovement.isCrouching)
         {
             canShoot = false;
             Shoot();

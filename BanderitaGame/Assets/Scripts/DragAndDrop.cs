@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class DragAndDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IEndDragHandler, IDragHandler
+public class DragAndDrop : MonoBehaviour,  IDragHandler
 {
+    //Between MonoBegaviour and IDragHandler
+    // IPointerDownHandler, IBeginDragHandler, IEndragHandler,
 
     [SerializeField] private Canvas canvas;
 
@@ -15,24 +17,23 @@ public class DragAndDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler
         rectTransform = GetComponent<RectTransform>();
     }
 
-    public void OnBeginDrag(PointerEventData eventData)
-    {
-        Debug.Log("OnBeginDrag");
-    }
+    // public void OnBeginDrag(PointerEventData eventData)
+    // {
+    //     Debug.Log("OnBeginDrag");
+    // }
 
     public void OnDrag(PointerEventData eventData)
     {
-        Debug.Log("OnDrag");
         rectTransform.anchoredPosition += eventData.delta / canvas.scaleFactor;
     }
 
-    public void OnEndDrag(PointerEventData eventData)
-    {
-        Debug.Log("OndEndDrag");
-    }
+    // public void OnEndDrag(PointerEventData eventData)
+    // {
+    //     Debug.Log("OndEndDrag");
+    // }
 
-    public void OnPointerDown(PointerEventData eventData)
-    {
-        Debug.Log("OnPointerDown");
-    }
+    // public void OnPointerDown(PointerEventData eventData)
+    // {
+    //     Debug.Log("OnPointerDown");
+    // }
 }

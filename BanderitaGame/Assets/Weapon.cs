@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
-    public Transform firePoint;
+    public Transform middleFirePoint;
+    public Transform downFirePoint;
+    public Transform upFirePoint;
+
     public GameObject bulletPrefab;
 
     public GameObject canvas;
@@ -13,20 +16,37 @@ public class Weapon : MonoBehaviour
 
     public float speed;
 
+    public PlayerMovement playerMovement;
+
     void Start()
     {
         StartCoroutine(WaitForShooting());
-
     }
 
     void Update()
     {
-        
+
     }
 
     void Shoot()
     {
-        Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+        if(upFirePoint == null || downFirePoint == null)
+        {  
+        Instantiate(bulletPrefab, middleFirePoint.position, middleFirePoint.rotation);    
+        }
+        else
+        {
+            if(playerMovement.isCrouching)
+            {
+                Instantiate(bulletPrefab, downFirePoint.position, downFirePoint.rotation);
+            }
+            else if(playerMovement.isJumping)
+            {
+                Instantiate(bulletPrefab, upFirePoint.position, upFirePoint.rotation);
+            }
+            else
+            Instantiate(bulletPrefab, middleFirePoint.position, middleFirePoint.rotation);
+        }
     }
 
     IEnumerator WaitForShooting()
@@ -38,7 +58,8 @@ public class Weapon : MonoBehaviour
         canvas.SetActive(false);
         canvas.SetActive(true);
         }
-        //bullet.speed += 0.025f;
+
         StartCoroutine(WaitForShooting());
     }
+
 }

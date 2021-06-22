@@ -28,6 +28,9 @@ public class EnemyScript : MonoBehaviour
     public GameObject door;
     public GameObject braaHealthBar;
 
+    bool isEngaged;
+
+    float distance = 9f;
     void Start()
     {
         anim = GetComponent<Animator>();
@@ -42,7 +45,7 @@ public class EnemyScript : MonoBehaviour
 
     void Update()
     {
-        if(Vector2.Distance(transform.position, target.position) > 8f && !lost)
+        if(Vector2.Distance(transform.position, target.position) > distance && !lost)
         {
             transform.position = Vector2.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
         }
@@ -56,6 +59,12 @@ public class EnemyScript : MonoBehaviour
             transform.eulerAngles = new Vector3 (0f,180f,0f);
             sp.flipX = true;
         }
+
+        if(transform.position.y < -5f)
+        {
+            TakeDamage(100);
+            lost = true;
+        }
     }
 
     public void TakeDamage(float damage)
@@ -66,9 +75,17 @@ public class EnemyScript : MonoBehaviour
         
         anim.Play("TakeDamageAnim");
 
-        braaHitSound.Stop();
         braaHitSound.Play();
         healthBar.SetHealth(currentHealth);
+
+        if(currentHealth == 20 || currentHealth == 40 || currentHealth == 60 || currentHealth == 80)
+        {
+            anim.Play("BraaEngagedAnim");
+            anim.SetBool("IsEngaged",true);
+            GetComponent<Weapon>().speed = 0.2f;
+            StartCoroutine(WaitForEngage());
+            distance = distance / 2f;
+        }
 
         if(currentHealth <= 0)
         {
@@ -91,5 +108,13 @@ public class EnemyScript : MonoBehaviour
     {
         door.SetActive(true);
         braaHealthBar.SetActive(false); 
+    }
+
+    IEnumerator WaitForEngage()
+    {
+        yield return new WaitForSeconds(1f);
+        anim.SetBool("IsEngaged",false);
+        GetComponent<Weapon>().speed = 1.4f;
+        distance = distance * 2f;
     }
 }

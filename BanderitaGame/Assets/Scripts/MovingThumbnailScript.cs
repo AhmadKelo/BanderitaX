@@ -51,4 +51,14 @@ public class MovingThumbnailScript : MonoBehaviour
         StartCoroutine(WaitForThumbnail());
 
     }
+    
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        collision.collider.transform.SetParent(transform);
+    }
+
+    void OnCollisionExit2D(Collision2D collision)
+    {
+        collision.collider.transform.SetParent(null);
+    }
 }

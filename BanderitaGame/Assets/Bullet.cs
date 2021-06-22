@@ -9,10 +9,9 @@ public class Bullet : MonoBehaviour
 
     public Animator anim;
 
-    //public GameObject effect;
-
     void Start()
     {
+        //Move the Bullet
         rb.velocity = transform.right * speed;
 
         anim = GetComponent<Animator>();
@@ -20,12 +19,9 @@ public class Bullet : MonoBehaviour
         StartCoroutine(AutoDestory());
     }
 
-    void Update()
-    {
-    }
-
     void FixedUpdate()
     {
+        //Rotate the Bullet
         transform.Rotate(0f, 0f, 10f);
     }
 
@@ -33,8 +29,11 @@ public class Bullet : MonoBehaviour
     {
         if(!hitInfo.CompareTag("Controller"))
         {
+
+        //Stop the Bullet
         rb.velocity = transform.right * 0;
 
+        //Play Explode Animation
         anim.Play("BulletExpAnim");
         
 
@@ -42,24 +41,19 @@ public class Bullet : MonoBehaviour
 
         if (player != null)
         {
-            //Stop the Bullet
-
             player.PlayerDieByHit();
-
         }
         }
-        StartCoroutine(WaitForDestory());
+        //Destroy Bullet When Animaiton Done
+        Destroy(gameObject, 0.25f);
+
     }
 
-    IEnumerator WaitForDestory()
-    {
-        yield return new WaitForSeconds(.2f);
-        Destroy(gameObject);
-    }
-
+    //When Bullet Didn't Hit Anything Auto Destroy
     IEnumerator AutoDestory()
     {
         yield return new WaitForSeconds(8f);
+        if(gameObject != null)
         Destroy(gameObject);
     }
 }
