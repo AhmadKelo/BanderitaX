@@ -18,9 +18,11 @@ public class Weapon : MonoBehaviour
 
     public PlayerMovement playerMovement;
 
+    Animator anim;
     void Start()
     {
         StartCoroutine(WaitForShooting());
+        anim = GetComponent<Animator>();
     }
 
     void Update()

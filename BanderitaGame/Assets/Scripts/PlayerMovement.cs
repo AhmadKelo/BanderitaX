@@ -5,42 +5,55 @@ using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
-    // Player Shape
+
+    #region Component Variables
     SpriteRenderer mySprite;
-
     Rigidbody2D rb;
-
     Animator anim;
+    #endregion
+    
 
+    #region Speed and Jump Variables
+    [Header("Speed and Jump")]
     [SerializeField] float speed = 7f;
-
     [SerializeField] float jump = 12.5f;
+    public bool isJumping = false;
+    [Space(20)]
+    #endregion
+    
 
-    [SerializeField] Vector3 myPosition;
+    #region Vector Variables
+      Vector3 spawnPosition;  
+      Vector3 myPosition;
+    #endregion
+    
 
-    public bool isJumping;
-
-    // Spawning
-    Vector3 spawnPosition;
-
-    // Audio
+    #region Sound Variables
+    [Header("Sounds")]
     public AudioSource hitSound;
+    #endregion
 
-    // Crouch
+
+    #region Crouch Variables
+    [Header("Crouch")]
     public BoxCollider2D bc1;
     public BoxCollider2D bc2;
     public bool isCrouching;
+    
+    #endregion
 
-    // Potato
-    public GameObject[] potato;
 
+    #region Player Health Variables
+    [Header("Player Health")]
     public int maxHealth;
     public int currentHealth;
-
     public HealthBarScript healthBar;
+    #endregion
+
+
+
     void Start()
     {
-        isJumping = false;
         mySprite = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
@@ -50,10 +63,11 @@ public class PlayerMovement : MonoBehaviour
         healthBar.SetMaxHealth(maxHealth);
     }
 
+
     void Update()
     {
 
-        //Player direction
+        #region Player Direction
         if (myPosition.x > 0 && !PauseMenuScript.GameIsPaused)
         {
                 transform.eulerAngles = new Vector3(0f,0f,0f);
@@ -63,18 +77,25 @@ public class PlayerMovement : MonoBehaviour
         {
                 transform.eulerAngles = new Vector3(0f,180f,0f);
         }
+        #endregion
 
-
-        //Run Animation
+        #region Run Animation
+        
         anim.SetFloat("Speed", Mathf.Abs(myPosition.x));
 
-        // Player Lose
+        #endregion
+
+        #region Player Fall Down
+
         if (transform.position.y < -5f)
         {
             PlayerDieFalling();
         }
+        
+        #endregion
 
-        //Crouch
+        #region Crouch
+
         if (Input.GetKey(KeyCode.S) && !isJumping && !PauseMenuScript.GameIsPaused)
         {
             anim.SetBool("isCrouching", true);
@@ -92,8 +113,11 @@ public class PlayerMovement : MonoBehaviour
             isCrouching = false;
         }
 
+        #endregion
 
-        // Jumping
+
+        #region Jump
+
         if (Input.GetKeyDown(KeyCode.W) && !isJumping && !PauseMenuScript.GameIsPaused)
         {
             rb.velocity = new Vector2(0, jump);
@@ -106,18 +130,24 @@ public class PlayerMovement : MonoBehaviour
                 anim.SetBool("IsJumping", false);
         }
 
+        #endregion
 
     }
 
 
     private void FixedUpdate()
     {
-        // Walk and Run
+        #region Movement
+
         myPosition.x = Input.GetAxisRaw("Horizontal");
         transform.position += myPosition * speed * Time.fixedDeltaTime;
 
-
+        #endregion
     }
+
+
+
+    #region Player Loose and Take Damage
 
     // When Player Lose By Controller Hit
     public void PlayerDieByHit()
@@ -132,7 +162,10 @@ public class PlayerMovement : MonoBehaviour
         anim.Play("IdleAnim");
         myPosition.x = 0f;
         transform.position = spawnPosition;
+        if(healthBar != null)
         TakeDamage(15);
+        else if(healthBar == null)
+        Respawn();
     }
 
 
@@ -154,6 +187,8 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    #endregion
+
     void GameOver()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
@@ -165,15 +200,4 @@ public class PlayerMovement : MonoBehaviour
         transform.position = spawnPosition;
     }
 
-
-    /*
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if(other.gameObject.CompareTag("Potato"))
-        {
-            jump = 18f;
-            potato[0].SetActive(false);
-        }
-    }
-*/
 }

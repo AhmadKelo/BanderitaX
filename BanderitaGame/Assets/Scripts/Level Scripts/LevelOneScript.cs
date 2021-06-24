@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Video;
 
 public class LevelOneScript : MonoBehaviour
 {
@@ -16,8 +17,15 @@ public class LevelOneScript : MonoBehaviour
 
     GameObject subscribeButton;
 
+    VideoPlayer videoPlayer1;
+    VideoPlayer videoPlayer2;
+
     void Start()
     {
+
+        //Attach Video Players
+        videoPlayer1 = GameObject.Find("Canvas/Video Player").GetComponent<VideoPlayer>();
+        videoPlayer2 = GameObject.Find("Canvas 2/Video Player").GetComponent<VideoPlayer>();
 
         //Attach canvases
         canvas1 = GameObject.Find("Canvas");
@@ -37,9 +45,11 @@ public class LevelOneScript : MonoBehaviour
         subscribeButton.SetActive(false);
 
         //Prepare Videos For Better Performance   
-        canvas1.GetComponent<UnityEngine.Video.VideoPlayer>().Prepare();
-        canvas2.GetComponent<UnityEngine.Video.VideoPlayer>().Prepare();
+        // canvas1.GetComponent<UnityEngine.Video.VideoPlayer>().Prepare();
+        // canvas2.GetComponent<UnityEngine.Video.VideoPlayer>().Prepare();
 
+        videoPlayer1.Prepare();
+        videoPlayer2.Prepare();
     }
 
     void Update()
@@ -47,10 +57,11 @@ public class LevelOneScript : MonoBehaviour
         if(playerG.transform.position.x > 0 && !disActivateCanvas)
         {
             //Play First Video
-            canvas1.GetComponent<UnityEngine.Video.VideoPlayer>().Play();
+            // canvas1.GetComponent<UnityEngine.Video.VideoPlayer>().Play();
+            videoPlayer1.Play();
 
             //Play First Video's Animation
-            anim.Play("FirstVideoAnim");
+            // anim.Play("FirstVideoAnim");
 
             //Activate Subscribe Button
             subscribeButton.SetActive(true);
@@ -66,10 +77,12 @@ public class LevelOneScript : MonoBehaviour
         Destroy(canvas1);
 
         //Play Second Video
-        canvas2.GetComponent<UnityEngine.Video.VideoPlayer>().Play();
+        // canvas2.GetComponent<UnityEngine.Video.VideoPlayer>().Play();
+        videoPlayer2.Play();
+
 
         //Play Second Video's Animation
-        anim2.Play("SecondVideoAnim");
+        // anim2.Play("SecondVideoAnim");
     }
 
     

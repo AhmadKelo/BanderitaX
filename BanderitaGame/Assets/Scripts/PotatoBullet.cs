@@ -32,7 +32,7 @@ public class PotatoBullet : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D hitInfo)
     {
-        if(!hitInfo.CompareTag("Potato") && !hitInfo.CompareTag("Controller")){
+        if(!hitInfo.CompareTag("Potato") && !hitInfo.CompareTag("Controller") && !hitInfo.CompareTag("Player")){
     
         rb.velocity = transform.right * 0;
 

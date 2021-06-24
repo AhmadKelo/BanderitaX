@@ -13,6 +13,7 @@ public class PotatosWeaponScript : MonoBehaviour
     public float shootingDelay;
 
     PlayerMovement playerMovement;
+    
     void Start()
     {
         playerMovement = GetComponent<PlayerMovement>();
