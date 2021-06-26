@@ -1,33 +1,40 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Video;
 
 public class Weapon : MonoBehaviour
 {
+
+    #region Fire Variables
+
     public Transform middleFirePoint;
     public Transform downFirePoint;
     public Transform upFirePoint;
-
+        
     public GameObject bulletPrefab;
-
-    public GameObject canvas;
 
     public Bullet bullet;
 
     public float speed;
 
+    #endregion
+
+    #region Video Variables
+        
+    public VideoPlayer videoPlayer;
+    public AudioSource audioSource3;
+
+    #endregion
+
     public PlayerMovement playerMovement;
 
     Animator anim;
+
     void Start()
     {
         StartCoroutine(WaitForShooting());
         anim = GetComponent<Animator>();
-    }
-
-    void Update()
-    {
-
     }
 
     void Shoot()
@@ -54,11 +61,13 @@ public class Weapon : MonoBehaviour
     IEnumerator WaitForShooting()
     {
         yield return new WaitForSeconds(speed);
+
         Shoot();
-        if(canvas != null)
+        
+        if(videoPlayer != null)
         {
-        canvas.SetActive(false);
-        canvas.SetActive(true);
+        videoPlayer.Play();
+        audioSource3.Play();
         }
 
         StartCoroutine(WaitForShooting());

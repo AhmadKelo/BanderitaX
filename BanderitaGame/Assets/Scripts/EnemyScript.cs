@@ -117,4 +117,13 @@ public class EnemyScript : MonoBehaviour
         GetComponent<Weapon>().speed = 1.4f;
         distance = distance * 2f;
     }
+
+    // void OnTriggerEnter2D(Collider2D other)
+    // {
+    //     if(other.CompareTag("Player"))
+    //     {
+    //         anim.Play("BraaKickAnim");
+    //         Debug.Log("Collided With Player");
+    //     }
+    // }
 }

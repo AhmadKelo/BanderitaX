@@ -20,6 +20,9 @@ public class LevelOneScript : MonoBehaviour
     VideoPlayer videoPlayer1;
     VideoPlayer videoPlayer2;
 
+    public AudioSource audioSource1;
+    public AudioSource audioSource2;
+
     void Start()
     {
 
@@ -45,9 +48,6 @@ public class LevelOneScript : MonoBehaviour
         subscribeButton.SetActive(false);
 
         //Prepare Videos For Better Performance   
-        // canvas1.GetComponent<UnityEngine.Video.VideoPlayer>().Prepare();
-        // canvas2.GetComponent<UnityEngine.Video.VideoPlayer>().Prepare();
-
         videoPlayer1.Prepare();
         videoPlayer2.Prepare();
     }
@@ -57,8 +57,10 @@ public class LevelOneScript : MonoBehaviour
         if(playerG.transform.position.x > 0 && !disActivateCanvas)
         {
             //Play First Video
-            // canvas1.GetComponent<UnityEngine.Video.VideoPlayer>().Play();
             videoPlayer1.Play();
+
+            //Play First Vidoe's Sound
+            audioSource1.Play();
 
             //Play First Video's Animation
             // anim.Play("FirstVideoAnim");
@@ -77,9 +79,10 @@ public class LevelOneScript : MonoBehaviour
         Destroy(canvas1);
 
         //Play Second Video
-        // canvas2.GetComponent<UnityEngine.Video.VideoPlayer>().Play();
         videoPlayer2.Play();
 
+        //Play Second Video's Sound
+        audioSource2.Play();
 
         //Play Second Video's Animation
         // anim2.Play("SecondVideoAnim");

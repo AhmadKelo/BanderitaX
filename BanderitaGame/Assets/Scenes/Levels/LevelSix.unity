@@ -255,9 +255,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 721958132}
-        m_MethodName: loadLevel
-        m_Mode: 3
+      - m_Target: {fileID: 975516768}
+        m_MethodName: LoadMenu
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -407,7 +407,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 523487648}
   m_LocalRotation: {x: 0.06496248, y: 0.36342862, z: -0.025413401, w: 0.9290068}
-  m_LocalPosition: {x: -6.866938, y: -1.5982691, z: -11.211675}
+  m_LocalPosition: {x: -6.8664026, y: -1.5982691, z: -11.212169}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 579077827}
@@ -581,49 +581,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1553163953}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &721958131
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 721958133}
-  - component: {fileID: 721958132}
-  m_Layer: 0
-  m_Name: LevelLoader
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &721958132
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 721958131}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c2597af8c2bf2343af105ea5a5a88e6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!4 &721958133
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 721958131}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 832034627}
-  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &778197634
 GameObject:
@@ -1279,7 +1236,6 @@ Transform:
   - {fileID: 1170103848}
   - {fileID: 784736769}
   - {fileID: 1952461436}
-  - {fileID: 721958133}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1499,7 +1455,8 @@ AudioSource:
   m_GameObject: {fileID: 1170103846}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: f7264b288b286974ea006860317467fd,
+    type: 2}
   m_audioClip: {fileID: 8300000, guid: 412134d2beb3aeb429eb762b5111a305, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.1
@@ -1678,7 +1635,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1222695103}
   m_LocalRotation: {x: 0.06496248, y: 0.36342862, z: -0.025413401, w: 0.9290068}
-  m_LocalPosition: {x: -6.866938, y: -1.5982691, z: -11.211675}
+  m_LocalPosition: {x: -6.8664026, y: -1.5982691, z: -11.212169}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2115913193}

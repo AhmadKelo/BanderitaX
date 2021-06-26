@@ -2970,7 +2970,8 @@ AudioSource:
   m_GameObject: {fileID: 1471060469}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: f7264b288b286974ea006860317467fd,
+    type: 2}
   m_audioClip: {fileID: 8300000, guid: 412134d2beb3aeb429eb762b5111a305, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.1
@@ -4126,7 +4127,8 @@ AudioSource:
   m_GameObject: {fileID: 1788973780}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: f7264b288b286974ea006860317467fd,
+    type: 2}
   m_audioClip: {fileID: 8300000, guid: 22f68f3e46a57d844b85d66a848e59c7, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
@@ -4275,13 +4277,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 7
   jump: 14.5
-  myPosition: {x: 0, y: 0, z: 0}
   isJumping: 0
   hitSound: {fileID: 0}
   bc1: {fileID: 1792428590}
   bc2: {fileID: 1792428588}
   isCrouching: 0
-  potato: []
   maxHealth: 100
   currentHealth: 100
   healthBar: {fileID: 0}
