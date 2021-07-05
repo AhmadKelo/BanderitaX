@@ -9,12 +9,12 @@ public class EnemyScript : MonoBehaviour
     public float maxHealth;
     public float currentHealth;
 
-    public Animator anim;
+    Animator anim;
 
     public AudioSource braaLooseSound;
     public AudioSource braaHitSound;
 
-    private Transform target; // Player
+    public Transform target; // Player
 
     public float speed = 5f; // Moving Speed
 
@@ -36,8 +36,6 @@ public class EnemyScript : MonoBehaviour
         anim = GetComponent<Animator>();
         bc2d = GetComponent<BoxCollider2D>();
         sp = GetComponent<SpriteRenderer>();
-
-        target = GameObject.Find("Player").GetComponent<Transform>();
 
         anim.Play("BraaMoveAnim");
     }

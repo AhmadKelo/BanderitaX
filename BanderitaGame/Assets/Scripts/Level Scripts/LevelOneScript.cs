@@ -5,7 +5,7 @@ using UnityEngine.Video;
 
 public class LevelOneScript : MonoBehaviour
 {
-    GameObject playerG;
+    public GameObject playerG;
 
     bool disActivateCanvas = false;
 
@@ -33,9 +33,6 @@ public class LevelOneScript : MonoBehaviour
         //Attach canvases
         canvas1 = GameObject.Find("Canvas");
         canvas2 = GameObject.Find("Canvas 2");
-
-        //Attach player
-        playerG = GameObject.Find("Player");
 
         //Attach Anims
         anim = canvas1.GetComponent<Animator>();

@@ -13,19 +13,22 @@ public class PotatosWeaponScript : MonoBehaviour
     public float shootingDelay;
 
     PlayerMovement playerMovement;
-    
+
+    Animator anim;
+
     void Start()
     {
         playerMovement = GetComponent<PlayerMovement>();
+        anim = GetComponent<Animator>();
     }
 
 
     void Update()
     {
-        if(Input.GetButtonDown("Fire1") && !PauseMenuScript.GameIsPaused && canShoot && !playerMovement.isCrouching)
+        if(Input.GetButtonDown("Fire1") && !PauseMenuScript.GameIsPaused && canShoot )
         {
+            anim.SetBool("IsThrowing", true);
             canShoot = false;
-            Shoot();
             StartCoroutine(ShootingDelay());
         }
     }
@@ -38,6 +41,12 @@ public class PotatosWeaponScript : MonoBehaviour
     IEnumerator ShootingDelay()
     {
         yield return new WaitForSeconds(shootingDelay);
+        Shoot();
+
+        yield return new WaitForSeconds(shootingDelay);
         canShoot = true;
+        anim.SetBool("IsThrowing", false);
+
+
     }
 }

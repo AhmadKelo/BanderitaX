@@ -34,15 +34,6 @@ public class PlayerMovement : MonoBehaviour
     #endregion
 
 
-    #region Crouch Variables
-    [Header("Crouch")]
-    public BoxCollider2D bc1;
-    public BoxCollider2D bc2;
-    public bool isCrouching;
-    
-    #endregion
-
-
     #region Player Health Variables
     [Header("Player Health")]
     public int maxHealth;
@@ -96,25 +87,24 @@ public class PlayerMovement : MonoBehaviour
 
         #region Crouch
 
-        if (Input.GetKey(KeyCode.S) && !isJumping && !PauseMenuScript.GameIsPaused)
-        {
-            anim.SetBool("isCrouching", true);
-            speed = 4f;
-            bc1.enabled = false;
-            bc2.enabled = true;
-            isCrouching = true;
-        }
-        else 
-        {
-            anim.SetBool("isCrouching", false);
-            speed = 7f;
-            bc1.enabled = true;
-            bc2.enabled = false;
-            isCrouching = false;
-        }
+        // if (Input.GetKey(KeyCode.S) && !isJumping && !PauseMenuScript.GameIsPaused)
+        // {
+        //     anim.SetBool("isCrouching", true);
+        //     speed = 4f;
+        //     bc1.enabled = false;
+        //     bc2.enabled = true;
+        //     isCrouching = true;
+        // }
+        // else 
+        // {
+        //     anim.SetBool("isCrouching", false);
+        //     speed = 7f;
+        //     bc1.enabled = true;
+        //     bc2.enabled = false;
+        //     isCrouching = false;
+        // }
 
         #endregion
-
 
         #region Jump
 
@@ -159,7 +149,7 @@ public class PlayerMovement : MonoBehaviour
     //When Player Lose By Falling Down
     public void PlayerDieFalling()
     {
-        anim.Play("IdleAnim");
+        // anim.Play("PlayerIdle");
         myPosition.x = 0f;
         transform.position = spawnPosition;
         if(healthBar != null)
@@ -175,22 +165,29 @@ public class PlayerMovement : MonoBehaviour
         {
             currentHealth -= damage;
             healthBar.SetHealth(currentHealth);
-            anim.Play("PlayerTakeDamageAnim");
 
             if(currentHealth <= 0)
             {
-                GameOver();
+                anim.Play("Player Loose");  
+
+                StartCoroutine(GameOver());
+            }else
+            {
+                anim.Play("Player Hurt");
             }
-        }else if(healthBar == null)
+        }
+        else if(healthBar == null)
         {
             StartCoroutine(Respawn());
         }
+
     }
 
     #endregion
 
-    void GameOver()
+    IEnumerator GameOver()
     {
+        yield return new WaitForSeconds(1f);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 

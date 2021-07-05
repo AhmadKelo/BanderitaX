@@ -38,25 +38,10 @@ public class Weapon : MonoBehaviour
     }
 
     void Shoot()
-    {
-        if(upFirePoint == null || downFirePoint == null)
-        {  
+    { 
         Instantiate(bulletPrefab, middleFirePoint.position, middleFirePoint.rotation);    
-        }
-        else
-        {
-            if(playerMovement.isCrouching)
-            {
-                Instantiate(bulletPrefab, downFirePoint.position, downFirePoint.rotation);
-            }
-            else if(playerMovement.isJumping)
-            {
-                Instantiate(bulletPrefab, upFirePoint.position, upFirePoint.rotation);
-            }
-            else
-            Instantiate(bulletPrefab, middleFirePoint.position, middleFirePoint.rotation);
-        }
-    }
+
+    }      
 
     IEnumerator WaitForShooting()
     {
