@@ -25,7 +25,7 @@ public class PotatosWeaponScript : MonoBehaviour
 
     void Update()
     {
-        if(Input.GetButtonDown("Fire1") && !PauseMenuScript.GameIsPaused && canShoot )
+        if(Input.GetKeyDown(KeyCode.Space) && !PauseMenuScript.GameIsPaused && canShoot && !playerMovement.lost)
         {
             anim.SetBool("IsThrowing", true);
             canShoot = false;

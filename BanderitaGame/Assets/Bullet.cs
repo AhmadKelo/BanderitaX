@@ -41,7 +41,7 @@ public class Bullet : MonoBehaviour
 
         if (player != null)
         {
-            player.PlayerDieByHit();
+            player.PlayerHit();
         }
         }
         //Destroy Bullet When Animaiton Done

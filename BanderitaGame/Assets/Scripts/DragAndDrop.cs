@@ -37,13 +37,13 @@ public class DragAndDrop : MonoBehaviour,  IDragHandler
     //     Debug.Log("OnPointerDown");
     // }
 
-    void OnCollisionEnter2D(Collision2D collision)
-    {
-        collision.collider.transform.SetParent(transform);
-    }
+    // void OnCollisionEnter2D(Collision2D collision)
+    // {
+    //     collision.collider.transform.SetParent(transform);
+    // }
 
-    void OnCollisionExit2D(Collision2D collision)
-    {
-        collision.collider.transform.SetParent(null);
-    }
+    // void OnCollisionExit2D(Collision2D collision)
+    // {
+    //     collision.collider.transform.SetParent(null);
+    // }
 }

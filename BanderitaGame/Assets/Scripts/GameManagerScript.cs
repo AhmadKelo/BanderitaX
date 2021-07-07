@@ -12,6 +12,7 @@ public class GameManagerScript : MonoBehaviour
     void Start()
     {
         players[PlayerPrefs.GetInt("Player", 0)].SetActive(true);
+        if(vcam != null)
         vcam.Follow = players[PlayerPrefs.GetInt("Player", 0)].transform;
     }
 

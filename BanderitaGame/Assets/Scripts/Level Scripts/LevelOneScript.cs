@@ -23,6 +23,7 @@ public class LevelOneScript : MonoBehaviour
     public AudioSource audioSource1;
     public AudioSource audioSource2;
 
+    public GameManagerScript gameManagerScript;
     void Start()
     {
 
@@ -47,6 +48,9 @@ public class LevelOneScript : MonoBehaviour
         //Prepare Videos For Better Performance   
         videoPlayer1.Prepare();
         videoPlayer2.Prepare();
+
+        //Attach Player To the Using Player
+        playerG = gameManagerScript.players[PlayerPrefs.GetInt("Player",0)];
     }
 
     void Update()

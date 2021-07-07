@@ -8,9 +8,7 @@ public class Weapon : MonoBehaviour
 
     #region Fire Variables
 
-    public Transform middleFirePoint;
-    public Transform downFirePoint;
-    public Transform upFirePoint;
+    public Transform FirePoint;
         
     public GameObject bulletPrefab;
 
@@ -39,7 +37,7 @@ public class Weapon : MonoBehaviour
 
     void Shoot()
     { 
-        Instantiate(bulletPrefab, middleFirePoint.position, middleFirePoint.rotation);    
+        Instantiate(bulletPrefab, FirePoint.position, FirePoint.rotation);    
 
     }      
 

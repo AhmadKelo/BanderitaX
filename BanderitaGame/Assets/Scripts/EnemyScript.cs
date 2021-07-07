@@ -14,7 +14,7 @@ public class EnemyScript : MonoBehaviour
     public AudioSource braaLooseSound;
     public AudioSource braaHitSound;
 
-    public Transform target; // Player
+    Transform target; // Player
 
     public float speed = 5f; // Moving Speed
 
@@ -31,6 +31,9 @@ public class EnemyScript : MonoBehaviour
     bool isEngaged;
 
     float distance = 9f;
+
+    public GameManagerScript gameManagerScript;
+
     void Start()
     {
         anim = GetComponent<Animator>();
@@ -38,6 +41,8 @@ public class EnemyScript : MonoBehaviour
         sp = GetComponent<SpriteRenderer>();
 
         anim.Play("BraaMoveAnim");
+
+        target = gameManagerScript.players[PlayerPrefs.GetInt("Player", 0)].transform;
     }
 
 

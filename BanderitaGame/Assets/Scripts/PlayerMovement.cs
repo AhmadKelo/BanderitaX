@@ -39,6 +39,7 @@ public class PlayerMovement : MonoBehaviour
     public int maxHealth;
     public int currentHealth;
     public HealthBarScript healthBar;
+    public bool lost;
     #endregion
 
 
@@ -80,7 +81,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (transform.position.y < -5f)
         {
-            PlayerDieFalling();
+            PlayerLoseFalling();
         }
         
         #endregion
@@ -137,25 +138,21 @@ public class PlayerMovement : MonoBehaviour
 
 
 
-    #region Player Loose and Take Damage
+    #region Player Lose and Take Damage
 
-    // When Player Lose By Controller Hit
-    public void PlayerDieByHit()
+    //When Player Take Damage by Controller Hit
+    public void PlayerHit()
     {
         hitSound.Play();
         TakeDamage(15);
     }
 
-    //When Player Lose By Falling Down
-    public void PlayerDieFalling()
+    //When Player Lose by Falling
+    public void PlayerLoseFalling()
     {
-        // anim.Play("PlayerIdle");
-        myPosition.x = 0f;
         transform.position = spawnPosition;
         if(healthBar != null)
         TakeDamage(15);
-        else if(healthBar == null)
-        Respawn();
     }
 
 
@@ -165,6 +162,7 @@ public class PlayerMovement : MonoBehaviour
         {
             currentHealth -= damage;
             healthBar.SetHealth(currentHealth);
+
 
             if(currentHealth <= 0)
             {
@@ -178,7 +176,10 @@ public class PlayerMovement : MonoBehaviour
         }
         else if(healthBar == null)
         {
+            anim.Play("Player Loose"); 
             StartCoroutine(Respawn());
+
+            rb.velocity = new Vector2(0,-1f);
         }
 
     }
@@ -193,7 +194,8 @@ public class PlayerMovement : MonoBehaviour
 
     IEnumerator Respawn()
     {
-        yield return new WaitForSeconds(0.25f);
+        yield return new WaitForSeconds(0.5f);
+        anim.Play("PlayerIdle");
         transform.position = spawnPosition;
     }
 
