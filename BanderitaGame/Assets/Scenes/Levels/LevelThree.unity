@@ -4253,7 +4253,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EKey: {fileID: 2091031998}
-  nextLevel: 4
+  nextLevel: 0
 --- !u!212 &1788973783
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4483,6 +4483,7 @@ MonoBehaviour:
   maxHealth: 100
   currentHealth: 100
   healthBar: {fileID: 0}
+  lost: 0
 --- !u!61 &1792428590
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -7,12 +7,13 @@ public class DoorScript : MonoBehaviour
 {
     public GameObject EKey;
 
-    public int nextLevel;
+    int nextLevel;
 
     bool canEnterNextLevel;
+
     void Start()
     {
-        
+        nextLevel = SceneManager.GetActiveScene().buildIndex +1;
     }
 
     void Update()

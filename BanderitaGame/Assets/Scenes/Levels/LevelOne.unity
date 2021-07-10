@@ -667,6 +667,7 @@ MonoBehaviour:
   maxHealth: 100
   currentHealth: 100
   healthBar: {fileID: 0}
+  lost: 0
 --- !u!61 &352344831
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2005,7 +2006,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EKey: {fileID: 1748085339}
-  nextLevel: 2
+  nextLevel: 0
 --- !u!61 &1291466672
 BoxCollider2D:
   m_ObjectHideFlags: 0

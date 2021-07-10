@@ -9,11 +9,17 @@ public class GameManagerScript : MonoBehaviour
 
     public GameObject[] players;
 
+    // public GameObject winPlayer;
+
+
     void Start()
     {
         players[PlayerPrefs.GetInt("Player", 0)].SetActive(true);
         if(vcam != null)
         vcam.Follow = players[PlayerPrefs.GetInt("Player", 0)].transform;
+
+       
+        
     }
 
 
@@ -21,4 +27,9 @@ public class GameManagerScript : MonoBehaviour
     {
         
     }
+
+    // public void GotNewSkin()
+    // {
+        
+    // }
 }
