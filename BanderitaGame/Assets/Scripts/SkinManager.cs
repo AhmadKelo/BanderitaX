@@ -14,20 +14,28 @@ public class SkinManager : MonoBehaviour
 
     void Start()
     {
-
         useButtons[PlayerPrefs.GetInt("Player", 0)].SetActive(false);
         usingButtons[PlayerPrefs.GetInt("Player", 0)].SetActive(true);
 
-        openedPlayers = PlayerPrefs.GetInt("PlayerProgressPP", 0);
+        openedPlayers = PlayerPrefs.GetInt("PlayerProgressPP",0);
 
         
-        if(openedPlayers >= 5)
+        if(openedPlayers >= 6)
         {
             locked[1].SetActive(false);
-            locked[2].SetActive(false);
+
+            if(openedPlayers >= 10)
+            {
+                locked[2].SetActive(false);
+
+                if(openedPlayers >= 15)
+                {
+                    locked[3].SetActive(false);
+                }
+
         }
-        else if(openedPlayers >= 10)
-            locked[2].SetActive(false);
+
+        }
 
 
         

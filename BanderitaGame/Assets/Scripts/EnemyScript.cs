@@ -28,7 +28,7 @@ public class EnemyScript : MonoBehaviour
     public GameObject door;
     public GameObject braaHealthBar;
 
-    bool isEngaged;
+    public bool isEngaged;
 
     float distance = 9f;
 
@@ -42,7 +42,7 @@ public class EnemyScript : MonoBehaviour
 
         anim.Play("BraaMoveAnim");
 
-        target = gameManagerScript.players[PlayerPrefs.GetInt("Player", 0)].transform;
+        target = gameManagerScript.players[PlayerPrefs.GetInt("Player", 0)];
     }
 
 
@@ -83,6 +83,7 @@ public class EnemyScript : MonoBehaviour
 
         if(currentHealth == 20 || currentHealth == 40 || currentHealth == 60 || currentHealth == 80)
         {
+            isEngaged = true;
             anim.Play("BraaEngagedAnim");
             anim.SetBool("IsEngaged",true);
             GetComponent<Weapon>().speed = 0.2f;
@@ -116,6 +117,7 @@ public class EnemyScript : MonoBehaviour
     IEnumerator WaitForEngage()
     {
         yield return new WaitForSeconds(1f);
+        isEngaged = false;
         anim.SetBool("IsEngaged",false);
         GetComponent<Weapon>().speed = 1.4f;
         distance = distance * 2f;

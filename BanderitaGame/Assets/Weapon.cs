@@ -35,10 +35,9 @@ public class Weapon : MonoBehaviour
         anim = GetComponent<Animator>();
     }
 
-    void Shoot()
+    public void Shoot()
     { 
         Instantiate(bulletPrefab, FirePoint.position, FirePoint.rotation);    
-
     }      
 
     IEnumerator WaitForShooting()

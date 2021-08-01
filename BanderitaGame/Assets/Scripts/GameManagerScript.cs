@@ -7,19 +7,32 @@ public class GameManagerScript : MonoBehaviour
 {
     public CinemachineVirtualCamera vcam;
 
-    public GameObject[] players;
-
     // public GameObject winPlayer;
 
+    Transform Player;
+
+    public Transform[] players;
 
     void Start()
     {
-        players[PlayerPrefs.GetInt("Player", 0)].SetActive(true);
+        //Attach Players Parent
+        Player = GameObject.Find("Player").transform;
+
+        //Make Size of the array player count
+        players = new Transform[Player.gameObject.transform.childCount];
+
+        //Attach Players to the array
+        for (int i = 0; i < players.Length; i++)
+        {
+        players[i] = Player.gameObject.transform.GetChild(i);
+        }
+
+
+        
+        players[PlayerPrefs.GetInt("Player", 0)].gameObject.SetActive(true);
         if(vcam != null)
         vcam.Follow = players[PlayerPrefs.GetInt("Player", 0)].transform;
 
-       
-        
     }
 
 

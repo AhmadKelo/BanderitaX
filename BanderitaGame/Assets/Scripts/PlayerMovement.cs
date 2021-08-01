@@ -109,7 +109,7 @@ public class PlayerMovement : MonoBehaviour
 
         #region Jump
 
-        if (Input.GetKeyDown(KeyCode.W) && !isJumping && !PauseMenuScript.GameIsPaused)
+        if (Input.GetKeyDown(KeyCode.W) && !isJumping && !PauseMenuScript.GameIsPaused && !lost)
         {
             rb.velocity = new Vector2(0, jump);
             isJumping = true;
@@ -130,8 +130,13 @@ public class PlayerMovement : MonoBehaviour
     {
         #region Movement
 
+        if(!lost)
+        {
+
         myPosition.x = Input.GetAxisRaw("Horizontal");
         transform.position += myPosition * speed * Time.fixedDeltaTime;
+
+        }
 
         #endregion
     }
@@ -167,6 +172,7 @@ public class PlayerMovement : MonoBehaviour
             if(currentHealth <= 0)
             {
                 anim.Play("Player Loose");  
+                lost = true;
 
                 StartCoroutine(GameOver());
             }else
@@ -177,6 +183,7 @@ public class PlayerMovement : MonoBehaviour
         else if(healthBar == null)
         {
             anim.Play("Player Loose"); 
+            lost = true;
             StartCoroutine(Respawn());
 
             rb.velocity = new Vector2(0,-1f);
@@ -188,13 +195,14 @@ public class PlayerMovement : MonoBehaviour
 
     IEnumerator GameOver()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(1.5f);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     IEnumerator Respawn()
     {
         yield return new WaitForSeconds(0.5f);
+        lost = false;
         anim.Play("PlayerIdle");
         transform.position = spawnPosition;
     }

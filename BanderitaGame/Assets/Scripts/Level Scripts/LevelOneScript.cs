@@ -50,7 +50,7 @@ public class LevelOneScript : MonoBehaviour
         videoPlayer2.Prepare();
 
         //Attach Player To the Using Player
-        playerG = gameManagerScript.players[PlayerPrefs.GetInt("Player",0)];
+        playerG = gameManagerScript.players[PlayerPrefs.GetInt("Player",0)].gameObject;
     }
 
     void Update()
