@@ -18,10 +18,9 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float speed = 7f;
     [SerializeField] float jump = 12.5f;
     public bool isJumping = false;
-    [Space(20)]
     #endregion
     
-
+    
     #region Vector Variables
       Vector3 spawnPosition;  
       Vector3 myPosition;

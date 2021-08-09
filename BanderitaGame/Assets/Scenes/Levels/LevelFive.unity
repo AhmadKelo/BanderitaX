@@ -5291,12 +5291,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   currentHealth: 100
+  braaHealthBar: {fileID: 1457333915}
   braaLooseSound: {fileID: 1080587660}
   braaHitSound: {fileID: 1860184804}
   speed: 2
-  healthBar: {fileID: 1457333917}
   door: {fileID: 445206886}
-  braaHealthBar: {fileID: 1457333915}
   isEngaged: 0
   gameManagerScript: {fileID: 1196554211}
 --- !u!95 &1891794852
@@ -5335,9 +5334,7 @@ MonoBehaviour:
     type: 3}
   bullet: {fileID: 5951605209642899395, guid: 81ac1ca9e8cd03049bf794f716c445a3, type: 3}
   speed: 1.5
-  videoPlayer: {fileID: 0}
-  audioSource3: {fileID: 0}
-  playerMovement: {fileID: 0}
+  hasVideo: 0
 --- !u!1 &1980735799
 GameObject:
   m_ObjectHideFlags: 0

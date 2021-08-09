@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Video;
 
-public class Weapon : MonoBehaviour
+public class Weapon     : MonoBehaviour
 {
 
     #region Fire Variables
@@ -20,19 +20,18 @@ public class Weapon : MonoBehaviour
 
     #region Video Variables
         
-    public VideoPlayer videoPlayer;
-    public AudioSource audioSource3;
+    PlayVideo playVideo;
+
+    public bool hasVideo;
 
     #endregion
-
-    public PlayerMovement playerMovement;
-
-    Animator anim;
-
+    
     void Start()
     {
         StartCoroutine(WaitForShooting());
-        anim = GetComponent<Animator>();
+
+        if(hasVideo)
+        playVideo = GetComponent<PlayVideo>();
     }
 
     public void Shoot()
@@ -45,11 +44,10 @@ public class Weapon : MonoBehaviour
         yield return new WaitForSeconds(speed);
 
         Shoot();
-        
-        if(videoPlayer != null)
+
+        if(hasVideo)
         {
-        videoPlayer.Play();
-        audioSource3.Play();
+            playVideo.PlayVideoAndAudio();
         }
 
         StartCoroutine(WaitForShooting());

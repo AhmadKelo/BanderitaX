@@ -857,6 +857,7 @@ GameObject:
   - component: {fileID: 760894023}
   - component: {fileID: 760894025}
   - component: {fileID: 760894026}
+  - component: {fileID: 760894027}
   m_Layer: 8
   m_Name: RawImage
   m_TagString: Untagged
@@ -937,7 +938,7 @@ MonoBehaviour:
   speed: 2.5
   videoPlayer: {fileID: 603440802}
   audioSource3: {fileID: 603440803}
-  playerMovement: {fileID: 398686628}
+  hasVideo: 1
 --- !u!61 &760894026
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -964,6 +965,20 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 320.06522, y: 179.76541}
   m_EdgeRadius: 0
+--- !u!114 &760894027
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 760894021}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6467e4e9157d0944894f1f52172f2b18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  video: {fileID: 603440802}
+  videoAudio: {fileID: 603440803}
 --- !u!1 &779067881
 GameObject:
   m_ObjectHideFlags: 3

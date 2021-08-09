@@ -1,38 +1,47 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class EnemyScript : MonoBehaviour
 {
+    #region Health Variables
 
+    [Header("Health")]
     public float maxHealth;
     public float currentHealth;
+    public GameObject braaHealthBar;
+    HealthBarScript healthBarScript;
+        
+    #endregion
+         
 
-    Animator anim;
-
+    #region Audio Variables
+        
+    [Header("Audio")]
     public AudioSource braaLooseSound;
     public AudioSource braaHitSound;
 
-    Transform target; // Player
+    #endregion
 
+
+    #region Other Variables
+        
+    [Header("Other")]
     public float speed = 5f; // Moving Speed
+    public GameObject door;
+    public bool isEngaged;
+    public GameManagerScript gameManagerScript;
 
+    Transform target; // Player
     BoxCollider2D bc2d; // For Disabling Collider when Loose
     bool lost;
-
     SpriteRenderer sp;
-
-    public HealthBarScript healthBar;
-
-    public GameObject door;
-    public GameObject braaHealthBar;
-
-    public bool isEngaged;
-
     float distance = 9f;
+    Animator anim;
 
-    public GameManagerScript gameManagerScript;
+    #endregion
+
+
 
     void Start()
     {
@@ -43,7 +52,10 @@ public class EnemyScript : MonoBehaviour
         anim.Play("BraaMoveAnim");
 
         target = gameManagerScript.players[PlayerPrefs.GetInt("Player", 0)];
+
+        healthBarScript = braaHealthBar.GetComponent<HealthBarScript>();
     }
+
 
 
     void Update()
@@ -70,6 +82,9 @@ public class EnemyScript : MonoBehaviour
         }
     }
 
+
+    #region Methods
+    
     public void TakeDamage(float damage)
     {
         if(!lost)
@@ -79,7 +94,7 @@ public class EnemyScript : MonoBehaviour
         anim.Play("TakeDamageAnim");
 
         braaHitSound.Play();
-        healthBar.SetHealth(currentHealth);
+        healthBarScript.SetHealth(currentHealth);
 
         if(currentHealth == 20 || currentHealth == 40 || currentHealth == 60 || currentHealth == 80)
         {
@@ -107,7 +122,6 @@ public class EnemyScript : MonoBehaviour
         bc2d.enabled = false;
     }
 
-
     void EnemyLoose()
     {
         door.SetActive(true);
@@ -122,13 +136,8 @@ public class EnemyScript : MonoBehaviour
         GetComponent<Weapon>().speed = 1.4f;
         distance = distance * 2f;
     }
+        
+    #endregion
 
-    // void OnTriggerEnter2D(Collider2D other)
-    // {
-    //     if(other.CompareTag("Player"))
-    //     {
-    //         anim.Play("BraaKickAnim");
-    //         Debug.Log("Collided With Player");
-    //     }
-    // }
+
 }

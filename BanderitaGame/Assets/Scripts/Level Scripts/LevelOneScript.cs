@@ -50,11 +50,14 @@ public class LevelOneScript : MonoBehaviour
         videoPlayer2.Prepare();
 
         //Attach Player To the Using Player
-        playerG = gameManagerScript.players[PlayerPrefs.GetInt("Player",0)].gameObject;
+        playerG = GameObject.Find("Player").transform.GetChild(PlayerPrefs.GetInt("Player", 0)).gameObject;
+
     }
+
 
     void Update()
     {
+
         if(playerG.transform.position.x > 0 && !disActivateCanvas)
         {
             //Play First Video

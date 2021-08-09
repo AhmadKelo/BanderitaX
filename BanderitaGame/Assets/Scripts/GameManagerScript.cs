@@ -7,8 +7,6 @@ public class GameManagerScript : MonoBehaviour
 {
     public CinemachineVirtualCamera vcam;
 
-    // public GameObject winPlayer;
-
     Transform Player;
 
     public Transform[] players;
@@ -24,7 +22,7 @@ public class GameManagerScript : MonoBehaviour
         //Attach Players to the array
         for (int i = 0; i < players.Length; i++)
         {
-        players[i] = Player.gameObject.transform.GetChild(i);
+            players[i] = Player.gameObject.transform.GetChild(i);
         }
 
 
@@ -36,13 +34,9 @@ public class GameManagerScript : MonoBehaviour
     }
 
 
-    void Update()
-    {
-        
-    }
 
-    // public void GotNewSkin()
+    // public GameObject GetCurrentPlayer()
     // {
-        
+    //     return players[PlayerPrefs.GetInt("Player", 0)].gameObject;
     // }
 }

@@ -2851,6 +2851,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   vcam: {fileID: 0}
   players: []
+  currentPlayer: {fileID: 0}
 --- !u!1 &1874990925
 GameObject:
   m_ObjectHideFlags: 0
