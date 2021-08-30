@@ -7,7 +7,7 @@ public class MovingThumbnailScript : MonoBehaviour
 
     Rigidbody2D rb;
 
-    [SerializeField] bool isGoingLeft = true;
+    bool isGoingLeft = true;
 
     bool start = true;
 
@@ -52,6 +52,8 @@ public class MovingThumbnailScript : MonoBehaviour
 
     }
     
+
+    // Set Player Child Of The Thumbnail To Make The Player Following Thumbnail
     void OnCollisionEnter2D(Collision2D collision)
     {
         collision.collider.transform.SetParent(transform);

@@ -6,11 +6,12 @@ using UnityEngine.Video;
 public class PlayVideo : MonoBehaviour
 {
     public VideoPlayer video;
-    public AudioSource videoAudio;
-
+    public AudioSource sound;
+    
     public void PlayVideoAndAudio()
     {
         video.Play();
-        videoAudio.Play();
+        sound.Play();
     }
+
 }

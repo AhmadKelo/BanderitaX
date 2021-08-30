@@ -521,7 +521,7 @@ SpriteRenderer:
   m_Size: {x: 0.33, y: 0.32}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &398686633
@@ -936,8 +936,6 @@ MonoBehaviour:
     type: 3}
   bullet: {fileID: 5951605209642899395, guid: 81ac1ca9e8cd03049bf794f716c445a3, type: 3}
   speed: 2.5
-  videoPlayer: {fileID: 603440802}
-  audioSource3: {fileID: 603440803}
   hasVideo: 1
 --- !u!61 &760894026
 BoxCollider2D:
@@ -978,7 +976,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   video: {fileID: 603440802}
-  videoAudio: {fileID: 603440803}
+  sound: {fileID: 603440803}
 --- !u!1 &779067881
 GameObject:
   m_ObjectHideFlags: 3

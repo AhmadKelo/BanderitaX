@@ -23,14 +23,13 @@ public class DoorScript : MonoBehaviour
             EKey.SetActive(true);
             if (Input.GetKeyDown(KeyCode.E))
             {
+                // Apply Player Progress
                 PlayerPrefs.SetInt("PlayerProgressPP", nextLevel);
+                // Go to next level
                 SceneManager.LoadScene(nextLevel);
             }
         }
-        else if(!canEnterNextLevel)
-        {
-            EKey.SetActive(false);
-        }
+        
         
     }
 
@@ -43,6 +42,7 @@ public class DoorScript : MonoBehaviour
     private void OnTriggerExit2D(Collider2D other)
     {   
         canEnterNextLevel = false;
+        EKey.SetActive(false);
     }
 
 

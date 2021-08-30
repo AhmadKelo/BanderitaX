@@ -5,6 +5,8 @@ using Cinemachine;
 
 public class GameManagerScript : MonoBehaviour
 {
+    // THIS SCRPIT SPAWNS THE CHOSEN PLAYER
+
     public CinemachineVirtualCamera vcam;
 
     Transform Player;
@@ -26,17 +28,11 @@ public class GameManagerScript : MonoBehaviour
         }
 
 
-        
+        // Spawn Chosen Player
         players[PlayerPrefs.GetInt("Player", 0)].gameObject.SetActive(true);
         if(vcam != null)
         vcam.Follow = players[PlayerPrefs.GetInt("Player", 0)].transform;
 
     }
 
-
-
-    // public GameObject GetCurrentPlayer()
-    // {
-    //     return players[PlayerPrefs.GetInt("Player", 0)].gameObject;
-    // }
 }

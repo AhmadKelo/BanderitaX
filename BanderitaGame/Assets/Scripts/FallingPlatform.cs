@@ -18,10 +18,10 @@ public class FallingPlatform : MonoBehaviour
     void OnCollisionEnter2D(Collision2D col)
     {
         rb.isKinematic = false;
-        Invoke("AfterDrop",2f);
+        Invoke("Respawn",2f);
     }
 
-    void AfterDrop()
+    void Respawn()
     {
         transform.position = spawnPosition;
         rb.bodyType = RigidbodyType2D.Static;
